@@ -1,4 +1,3 @@
-// src/Middleware/RequestIdMiddleware.cs
 using Microsoft.AspNetCore.Http;
 
 namespace Common.Middleware;

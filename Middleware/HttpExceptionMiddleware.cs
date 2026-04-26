@@ -10,7 +10,7 @@ public class HttpExceptionMiddleware(RequestDelegate next, ILogger<HttpException
     private readonly RequestDelegate _next = next;
     private readonly ILogger<HttpExceptionMiddleware> _logger = logger;
 
-  public async Task InvokeAsync(HttpContext context)
+    public async Task InvokeAsync(HttpContext context)
     {
         try
         {
