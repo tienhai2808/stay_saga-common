@@ -1,4 +1,4 @@
-using Common.Response;
+using Common.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,7 +23,7 @@ public static class ApiValidationExtensions
                                 .ToArray()
                         );
 
-                    var response = HttpApiResponse<Dictionary<string, string[]>>.Fail(
+                    var response = HttpApiResponseDto<Dictionary<string, string[]>>.Fail(
                         errors,
                         "VALIDATION_ERROR",
                         "Invalid input data"

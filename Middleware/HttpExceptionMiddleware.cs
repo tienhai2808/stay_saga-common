@@ -1,5 +1,5 @@
 using Common.Exceptions;
-using Common.Response;
+using Common.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -29,7 +29,7 @@ public class HttpExceptionMiddleware(RequestDelegate next, ILogger<HttpException
 
     private static async Task WriteError(HttpContext context, string code, string message, int status)
     {
-        var response = HttpApiResponse<object>.Fail(null, code, message);
+        var response = HttpApiResponseDto<object>.Fail(null, code, message);
 
         context.Response.StatusCode = status;
         context.Response.ContentType = "application/json";

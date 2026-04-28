@@ -1,4 +1,4 @@
-using Common.Response;
+using Common.DTOs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -73,7 +73,7 @@ public static class AuthExtensions
                 context.Response.ContentType = "application/json";
 
                 await context.Response.WriteAsJsonAsync(
-                    HttpApiResponse<object?>.Fail(
+                    HttpApiResponseDto<object?>.Fail(
                         data: null,
                         code: "UNAUTHORIZED",
                         message: "Unauthorized"
@@ -97,7 +97,7 @@ public static class AuthExtensions
                 context.Response.ContentType = "application/json";
 
                 await context.Response.WriteAsJsonAsync(
-                    HttpApiResponse<object?>.Fail(
+                    HttpApiResponseDto<object?>.Fail(
                         data: null,
                         code: "FORBIDDEN",
                         message: "Forbidden"
