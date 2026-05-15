@@ -25,13 +25,13 @@ public static class AuthExtensions
                 options.MapInboundClaims = false;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                ValidateIssuer = true,
-                ValidIssuer = authority,
-                ValidateAudience = true,
-                ValidAudience = audience,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                RoleClaimType = ClaimTypes.Role
+                    ValidateIssuer = true,
+                    ValidIssuer = authority,
+                    ValidateAudience = true,
+                    ValidAudience = audience,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    RoleClaimType = ClaimTypes.Role
                 };
 
                 options.Events = new JwtBearerEvents
@@ -145,7 +145,7 @@ public static class AuthExtensions
             if (!string.IsNullOrWhiteSpace(value))
                 identity.AddClaim(new Claim(ClaimTypes.Role, value));
         }
-        
+
     }
 
     private static string GetRequiredConfig(IConfiguration configuration, string key)

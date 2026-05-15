@@ -8,9 +8,11 @@ public class HttpException(string code, string message, int status) : Exception(
 
 public class NotFoundException(string message) : HttpException("NOT_FOUND", message, 404);
 
-public class ValidationException(string message) : HttpException("VALIDATION_ERROR", message, 400);
+public class BadRequestException(string message) : HttpException("BAD_REQUEST", message, 400);
 
 public class UnauthorizedException(string message) : HttpException("UNAUTHORIZED", message, 401);
+
+public class TooManyRequestsException(string message) : HttpException("TOO_MANY_REQUESTS", message, 429);
 
 public class ConflictException(string message) : HttpException("CONFLICT", message, 409);
 

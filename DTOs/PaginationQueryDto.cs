@@ -9,7 +9,7 @@ public class PaginationQueryDto
 
     [Range(1, 100, ErrorMessage = "Limit must be between 1 and 100.")]
     public int Limit { get; set; } = 10;
-    
+
     public string Sort { get; set; } = string.Empty;
     public string Order { get; set; } = string.Empty;
 }

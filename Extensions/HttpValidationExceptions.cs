@@ -14,19 +14,19 @@ public static class ApiValidationExtensions
             {
                 options.InvalidModelStateResponseFactory = context =>
                 {
-                    var errors = context.ModelState
+                    var firstErrorMessage = context.ModelState
                         .Where(x => x.Value is { Errors.Count: > 0 })
-                        .ToDictionary(
-                            kvp => kvp.Key,
-                            kvp => kvp.Value!.Errors
-                                .Select(e => string.IsNullOrWhiteSpace(e.ErrorMessage) ? "Invalid value." : e.ErrorMessage)
-                                .ToArray()
-                        );
+                        .SelectMany(
+                            kvp => kvp.Value!.Errors.Select(
+                                e => string.IsNullOrWhiteSpace(e.ErrorMessage) ? "Invalid value." : e.ErrorMessage
+                            )
+                        )
+                        .FirstOrDefault();
 
-                    var response = HttpApiResponseDto<Dictionary<string, string[]>>.Fail(
-                        errors,
-                        "VALIDATION_ERROR",
-                        "Invalid input data"
+                    var response = HttpApiResponseDto<object?>.Fail(
+                        null,
+                        "BAD_REQUEST",
+                        string.IsNullOrWhiteSpace(firstErrorMessage) ? "Invalid input data" : firstErrorMessage
                     );
 
                     return new BadRequestObjectResult(response);
